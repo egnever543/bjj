@@ -1,0 +1,19 @@
+INSERT INTO academia.aulas (
+  titulo,
+  descricao,
+  professor_id,
+  dia_semana,
+  horario_inicio,
+  horario_fim,
+  ativa
+)
+VALUES (
+  '{{inp_titulo.text}}',
+  '{{inp_descricao.text}}',
+  {{appsmith.store.usuarioLogado.id}},
+  {{sel_dia_semana.selectedOptionValue}},
+  '{{inp_horario_inicio.text}}'::time,
+  '{{inp_horario_fim.text}}'::time,
+  true
+)
+RETURNING *;

@@ -1,11 +1,39 @@
+-- Busca aulas do dia de hoje E cria ocorrência automaticamente se não existir
+WITH aulas_do_dia AS (
+  SELECT 
+    a.id as aula_id,
+    a.titulo,
+    a.descricao,
+    a.horario_inicio,
+    a.horario_fim,
+    a.professor_id,
+    u.nome as professor_nome
+  FROM academia.aulas a
+  JOIN academia.usuarios u ON a.professor_id = u.id
+  WHERE a.ativa = true
+    AND a.dia_semana = EXTRACT(DOW FROM CURRENT_DATE)
+),
+-- Cria ocorrências automaticamente se não existirem
+inserir_ocorrencias AS (
+  INSERT INTO academia.aulas_ocorrencias (aula_id, data, professor_id, status)
+  SELECT 
+    aula_id,
+    CURRENT_DATE,
+    professor_id,
+    'em_andamento'
+  FROM aulas_do_dia
+  ON CONFLICT (aula_id, data) DO NOTHING
+  RETURNING *
+)
+-- Retorna as aulas com seus status
 SELECT 
   ao.id as ocorrencia_id,
-  a.id as aula_id,
-  a.titulo,
-  a.descricao,
-  a.horario_inicio,
-  a.horario_fim,
-  u.nome as professor_nome,
+  ad.aula_id,
+  ad.titulo,
+  ad.descricao,
+  ad.horario_inicio,
+  ad.horario_fim,
+  ad.professor_nome,
   ao.status,
   p.id as presenca_id,
   p.status as checkin_status,
@@ -13,11 +41,9 @@ SELECT
     WHEN p.id IS NOT NULL THEN true
     ELSE false
   END as ja_fez_checkin
-FROM academia.aulas_ocorrencias ao
-JOIN academia.aulas a ON ao.aula_id = a.id
-JOIN academia.usuarios u ON ao.professor_id = u.id
+FROM aulas_do_dia ad
+JOIN academia.aulas_ocorrencias ao ON ao.aula_id = ad.aula_id AND ao.data = CURRENT_DATE
 LEFT JOIN academia.presencas p ON p.aula_ocorrencia_id = ao.id 
   AND p.aluno_id = {{appsmith.store.usuarioLogado.id}}
-WHERE ao.data = CURRENT_DATE
-  AND ao.status IN ('agendada', 'em_andamento')
-ORDER BY a.horario_inicio;
+WHERE ao.status != 'cancelada'
+ORDER BY ad.horario_inicio;

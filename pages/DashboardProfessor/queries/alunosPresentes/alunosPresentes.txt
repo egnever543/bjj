@@ -1,9 +1,0 @@
-SELECT 
-  u.id,
-  u.nome,
-  p.checkin_at,
-  TO_CHAR(p.checkin_at, 'HH24:MI') as horario_checkin
-FROM academia.presencas p
-JOIN academia.usuarios u ON p.aluno_id = u.id
-WHERE p.aula_ocorrencia_id = {{aulaHoje.data[0]?.ocorrencia_id}}
-ORDER BY p.checkin_at DESC;

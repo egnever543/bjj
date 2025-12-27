@@ -1,16 +1,16 @@
 {
-  "gitSyncId": "694ffca32f759c6ceec4b9aa_696d98f0-ebe5-47c7-91f0-37c281cfd8aa",
-  "id": "DashboardProfessor_alunosPresentes",
+  "gitSyncId": "694ffca32f759c6ceec4b9aa_11758408-4635-47bd-bc1d-82a93199c8e8",
+  "id": "DashboardProfessor_inserirAula",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n  u.id,\n  u.nome,\n  p.checkin_at,\n  TO_CHAR(p.checkin_at, 'HH24:MI') as horario_checkin\nFROM academia.presencas p\nJOIN academia.usuarios u ON p.aluno_id = u.id\nWHERE p.aula_ocorrencia_id = {{aulaHoje.data[0]?.ocorrencia_id}}\nORDER BY p.checkin_at DESC;",
+      "body": "INSERT INTO academia.aulas (\n  titulo,\n  descricao,\n  professor_id,\n  dia_semana,\n  horario_inicio,\n  horario_fim,\n  ativa\n)\nVALUES (\n  '{{inp_titulo.text}}',\n  '{{inp_descricao.text}}',\n  {{appsmith.store.usuarioLogado.id}},\n  {{sel_dia_semana.selectedOptionValue}},\n  '{{inp_horario_inicio.text}}'::time,\n  '{{inp_horario_fim.text}}'::time,\n  true\n)\nRETURNING *;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ],
       "timeoutInMillisecond": 10000
@@ -27,7 +27,7 @@
         "key": "body"
       }
     ],
-    "name": "alunosPresentes",
+    "name": "inserirAula",
     "pageId": "DashboardProfessor",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

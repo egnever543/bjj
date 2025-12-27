@@ -1,4 +1,0 @@
-UPDATE academia.aulas_ocorrencias 
-SET status = 'finalizada'
-WHERE id = {{aulaHoje.data[0]?.ocorrencia_id}}
-RETURNING *;

@@ -1,0 +1,61 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 22,
+  "boxShadow": "none",
+  "defaultOptionValue": "GREEN",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": false,
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "zmgrairlkk",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Dia da Semana",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 1,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 22,
+  "mobileLeftColumn": 1,
+  "mobileRightColumn": 21,
+  "mobileTopRow": 15,
+  "needsErrorInfo": false,
+  "optionLabel": "label",
+  "optionValue": "value",
+  "originalBottomRow": 22,
+  "originalTopRow": 15,
+  "parentColumnSpace": 6.4921875,
+  "parentId": "9u3cojsz8w",
+  "parentRowSpace": 10,
+  "placeholderText": "Select option",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 21,
+  "serverSideFiltering": false,
+  "sourceData": "[\n  {\n    \"label\": \"Segunda-feira\",\n    \"value\": \"1\"\n  },\n  {\n    \"label\": \"Terça-feira\",\n    \"value\": \"2\"\n  },\n  {\n    \"label\": \"Quarta-feira\",\n    \"value\": \"3\"\n  },\n  {\n    \"label\": \"Quinta-feira\",\n    \"value\": \"4\"\n  },\n  {\n    \"label\": \"Sexta-feira\",\n    \"value\": \"5\"\n  },\n  {\n    \"label\": \"Sábado\",\n    \"value\": \"6\"\n  },\n  {\n    \"label\": \"Domingo\",\n    \"value\": \"0\"\n  }\n]",
+  "topRow": 15,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "m7ekady4dq",
+  "widgetName": "sel_dia_semana"
+}
