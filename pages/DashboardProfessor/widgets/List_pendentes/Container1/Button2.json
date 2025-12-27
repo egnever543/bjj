@@ -37,7 +37,7 @@
   "mobileRightColumn": 32,
   "mobileTopRow": 6,
   "needsErrorInfo": false,
-  "onClick": "{{aprovarCheckin.run().then(() => {\n  checkinsPendentes.run();\n});}}",
+  "onClick": "{{aprovarCheckin.run()}}",
   "parentColumnSpace": 6.40625,
   "parentId": "62q4p5o1dk",
   "parentRowSpace": 10,
