@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "694ffca32f759c6ceec4b9aa_1f908105-3b77-456d-9a88-03461d9df541",
-  "id": "DashboardProfessor_cancelarAulaHoje",
+  "gitSyncId": "694ffca32f759c6ceec4b9aa_317749fc-00fe-4f97-8efd-71ca7fa36078",
+  "id": "DashboardProfessor_deletarAula",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO academia.aulas_ocorrencias (aula_id, data, professor_id, status, observacoes)\nVALUES (\n  {{List_minhas_aulas.triggeredItem.id}},\n  CURRENT_DATE,\n  {{appsmith.store.usuarioLogado.id}},\n  'cancelada',\n  'Cancelada pelo professor'\n)\nON CONFLICT (aula_id, data) \nDO UPDATE SET \n  status = 'cancelada',\n  observacoes = 'Cancelada pelo professor'\nRETURNING *;",
+      "body": "DELETE FROM academia.aulas\nWHERE id = {{List_minhas_aulas.triggeredItem.id}}\n  AND professor_id = {{appsmith.store.usuarioLogado.id}}\nRETURNING *;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -27,7 +27,7 @@
         "key": "body"
       }
     ],
-    "name": "cancelarAulaHoje",
+    "name": "deletarAula",
     "pageId": "DashboardProfessor",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

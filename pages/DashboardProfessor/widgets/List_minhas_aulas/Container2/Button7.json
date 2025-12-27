@@ -3,26 +3,16 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 12,
   "boxShadow": "none",
-  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonColor": "#ef4444",
   "buttonVariant": "PRIMARY",
   "disabledWhenInvalid": false,
   "dynamicBindingPathList": [
     {
-      "key": "buttonColor"
-    },
-    {
       "key": "borderRadius"
-    },
-    {
-      "key": "isVisible"
     }
   ],
   "dynamicHeight": "FIXED",
-  "dynamicPropertyPathList": [
-    {
-      "key": "isVisible"
-    }
-  ],
+  "dynamicPropertyPathList": [],
   "dynamicTriggerPathList": [
     {
       "key": "onClick"
@@ -31,7 +21,7 @@
   "isDefaultClickDisabled": true,
   "isDisabled": false,
   "isLoading": false,
-  "isVisible": "{{\n  // Só mostra se for o dia da aula\n  currentItem.dia_semana === new Date().getDay()\n}}",
+  "isVisible": true,
   "key": "nerigkge8o",
   "leftColumn": 0,
   "minWidth": 120,
@@ -40,7 +30,7 @@
   "mobileRightColumn": 16,
   "mobileTopRow": 8,
   "needsErrorInfo": false,
-  "onClick": "{{cancelarAulaHoje.run().then(() => {\n  minhasAulas.run();\n});}}",
+  "onClick": "{{deletarAula.run().then(() => {\n  minhasAulas.run();\n});}}",
   "parentColumnSpace": 6.40625,
   "parentId": "w06arhmrlr",
   "parentRowSpace": 10,

@@ -1,0 +1,4 @@
+DELETE FROM academia.aulas
+WHERE id = {{List_minhas_aulas.triggeredItem.id}}
+  AND professor_id = {{appsmith.store.usuarioLogado.id}}
+RETURNING *;
