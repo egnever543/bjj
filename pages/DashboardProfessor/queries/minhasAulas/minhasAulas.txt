@@ -1,0 +1,21 @@
+SELECT 
+  id,
+  titulo,
+  descricao,
+  CASE dia_semana 
+    WHEN 0 THEN 'Domingo'
+    WHEN 1 THEN 'Segunda'
+    WHEN 2 THEN 'Terça'
+    WHEN 3 THEN 'Quarta'
+    WHEN 4 THEN 'Quinta'
+    WHEN 5 THEN 'Sexta'
+    WHEN 6 THEN 'Sábado'
+  END as dia_semana_nome,
+  dia_semana,
+  horario_inicio,
+  horario_fim,
+  ativa
+FROM academia.aulas 
+WHERE professor_id = {{appsmith.store.usuarioLogado.id}}
+  AND ativa = true
+ORDER BY dia_semana, horario_inicio;

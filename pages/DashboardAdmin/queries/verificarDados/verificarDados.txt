@@ -1,0 +1,24 @@
+-- Ver todos os usuários
+SELECT 'USUÁRIOS' as tipo, nome, email, role FROM academia.usuarios
+UNION ALL
+-- Ver todas as aulas
+SELECT 'AULAS' as tipo, titulo, 
+  CASE dia_semana 
+    WHEN 0 THEN 'Domingo'
+    WHEN 1 THEN 'Segunda'
+    WHEN 2 THEN 'Terça'
+    WHEN 3 THEN 'Quarta'
+    WHEN 4 THEN 'Quinta'
+    WHEN 5 THEN 'Sexta'
+    WHEN 6 THEN 'Sábado'
+  END as email,
+  horario_inicio::text as role
+FROM academia.aulas
+UNION ALL
+-- Ver ocorrências
+SELECT 'OCORRÊNCIAS' as tipo, 
+  ao.data::text as nome,
+  ao.status as email,
+  a.titulo as role
+FROM academia.aulas_ocorrencias ao
+JOIN academia.aulas a ON ao.aula_id = a.id;

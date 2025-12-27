@@ -1,0 +1,18 @@
+-- Inserir um professor de teste
+INSERT INTO academia.usuarios (nome, email, senha, role, telefone)
+VALUES ('João Silva', 'professor@academia.com', 'prof123', 'professor', '47999999999')
+ON CONFLICT (email) DO NOTHING
+RETURNING id;
+
+-- Pegar o ID do professor (vamos precisar)
+-- Para isso, vamos criar em etapas
+
+-- Inserir alunos de teste
+INSERT INTO academia.usuarios (nome, email, senha, role, telefone)
+VALUES 
+  ('Maria Santos', 'maria@email.com', 'aluno123', 'aluno', '47988888888'),
+  ('Carlos Oliveira', 'carlos@email.com', 'aluno123', 'aluno', '47977777777'),
+  ('Ana Costa', 'ana@email.com', 'aluno123', 'aluno', '47966666666')
+ON CONFLICT (email) DO NOTHING;
+
+SELECT 'Usuários de teste criados!' as mensagem;

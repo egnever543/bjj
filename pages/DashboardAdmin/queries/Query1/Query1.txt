@@ -1,0 +1,12 @@
+-- Criar aula acontecendo HOJE
+WITH primeira_aula AS (
+  SELECT id, professor_id FROM academia.aulas WHERE ativa = true LIMIT 1
+)
+INSERT INTO academia.aulas_ocorrencias (aula_id, data, professor_id, status)
+SELECT 
+  id,
+  CURRENT_DATE,
+  professor_id,
+  'em_andamento'
+FROM primeira_aula
+RETURNING *;

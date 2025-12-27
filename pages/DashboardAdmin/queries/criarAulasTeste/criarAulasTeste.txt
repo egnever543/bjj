@@ -1,0 +1,34 @@
+-- Buscar o ID do professor João Silva
+WITH professor AS (
+  SELECT id FROM academia.usuarios WHERE email = 'professor@academia.com' LIMIT 1
+)
+-- Inserir aulas
+INSERT INTO academia.aulas (titulo, descricao, professor_id, dia_semana, horario_inicio, horario_fim)
+SELECT 
+  'Jiu-Jitsu Gi - Iniciante',
+  'Aula de Jiu-Jitsu com kimono para iniciantes',
+  professor.id,
+  1, -- Segunda-feira
+  '19:00'::time,
+  '20:00'::time
+FROM professor
+UNION ALL
+SELECT 
+  'Jiu-Jitsu No-Gi',
+  'Aula de Jiu-Jitsu sem kimono',
+  professor.id,
+  3, -- Quarta-feira
+  '20:00'::time,
+  '21:00'::time
+FROM professor
+UNION ALL
+SELECT 
+  'Jiu-Jitsu Gi - Avançado',
+  'Aula de Jiu-Jitsu com kimono para avançados',
+  professor.id,
+  5, -- Sexta-feira
+  '19:00'::time,
+  '20:30'::time
+FROM professor;
+
+SELECT 'Aulas criadas!' as mensagem;

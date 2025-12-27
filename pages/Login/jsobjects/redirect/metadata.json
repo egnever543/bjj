@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "694ffca32f759c6ceec4b9aa_50bb8094-c11f-4337-bcc0-e628bde4d579",
+  "id": "Login_redirect",
+  "unpublishedCollection": {
+    "name": "redirect",
+    "pageId": "Login",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

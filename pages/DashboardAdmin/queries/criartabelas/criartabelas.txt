@@ -1,0 +1,37 @@
+-- Tabela de aulas (cronograma)
+CREATE TABLE IF NOT EXISTS academia.aulas (
+  id SERIAL PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  descricao TEXT,
+  professor_id INTEGER REFERENCES academia.usuarios(id),
+  dia_semana INTEGER CHECK (dia_semana BETWEEN 0 AND 6),
+  horario_inicio TIME NOT NULL,
+  horario_fim TIME NOT NULL,
+  ativa BOOLEAN DEFAULT true,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de ocorrências de aulas
+CREATE TABLE IF NOT EXISTS academia.aulas_ocorrencias (
+  id SERIAL PRIMARY KEY,
+  aula_id INTEGER REFERENCES academia.aulas(id),
+  data DATE NOT NULL,
+  professor_id INTEGER REFERENCES academia.usuarios(id),
+  status VARCHAR(20) DEFAULT 'agendada' CHECK (status IN ('agendada', 'em_andamento', 'finalizada', 'cancelada')),
+  observacoes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(aula_id, data)
+);
+
+-- Tabela de presenças (check-ins)
+CREATE TABLE IF NOT EXISTS academia.presencas (
+  id SERIAL PRIMARY KEY,
+  aula_ocorrencia_id INTEGER REFERENCES academia.aulas_ocorrencias(id),
+  aluno_id INTEGER REFERENCES academia.usuarios(id),
+  checkin_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(aula_ocorrencia_id, aluno_id)
+);
+
+-- Mensagem de sucesso
+SELECT 'Tabelas criadas com sucesso!' as mensagem;

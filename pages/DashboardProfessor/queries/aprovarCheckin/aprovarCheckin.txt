@@ -1,0 +1,7 @@
+UPDATE academia.presencas 
+SET 
+  status = 'aprovado',
+  aprovado_por = {{appsmith.store.usuarioLogado.id}},
+  aprovado_em = NOW()
+WHERE id = {{Table_pendentes.selectedRow.presenca_id}}
+RETURNING *;

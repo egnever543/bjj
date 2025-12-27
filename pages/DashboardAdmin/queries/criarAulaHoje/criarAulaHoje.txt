@@ -1,0 +1,14 @@
+-- Criar uma aula acontecendo hoje para testar check-in
+WITH primeira_aula AS (
+  SELECT id, professor_id FROM academia.aulas LIMIT 1
+)
+INSERT INTO academia.aulas_ocorrencias (aula_id, data, professor_id, status)
+SELECT 
+  id,
+  CURRENT_DATE,
+  professor_id,
+  'em_andamento'
+FROM primeira_aula
+ON CONFLICT (aula_id, data) DO UPDATE 
+SET status = 'em_andamento'
+RETURNING *;

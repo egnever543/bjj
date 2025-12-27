@@ -1,0 +1,16 @@
+INSERT INTO academia."usuarios" (
+	"nome",
+	"email",
+	"senha",
+	"role",
+	"telefone",
+	"ativo",
+	"created_at")
+VALUES (
+	'{{insert_form.formData.nome}}',
+	'{{insert_form.formData.email}}',
+	'{{insert_form.formData.senha}}',
+	'{{insert_form.formData.role}}',
+	'{{insert_form.formData.telefone}}',
+	'{{insert_form.formData.ativo}}',
+	'{{insert_form.formData.created_at}}');

@@ -1,0 +1,9 @@
+UPDATE academia."usuarios" SET
+		"nome" = '{{update_form.fieldState.nome.isVisible ? update_form.formData.nome : update_form.sourceData.nome}}',
+		"email" = '{{update_form.fieldState.email.isVisible ? update_form.formData.email : update_form.sourceData.email}}',
+    "senha" = '{{update_form.fieldState.senha.isVisible ? update_form.formData.senha : update_form.sourceData.senha}}',
+		"role" = '{{update_form.fieldState.role.isVisible ? update_form.formData.role : update_form.sourceData.role}}',
+		"telefone" = '{{update_form.fieldState.telefone.isVisible ? update_form.formData.telefone : update_form.sourceData.telefone}}',
+		"ativo" = '{{update_form.fieldState.ativo.isVisible ? update_form.formData.ativo : update_form.sourceData.ativo}}',
+		"created_at" = '{{update_form.fieldState.created_at.isVisible ? update_form.formData.created_at : update_form.sourceData.created_at}}'
+WHERE "id" = {{data_table.selectedRow.id}};

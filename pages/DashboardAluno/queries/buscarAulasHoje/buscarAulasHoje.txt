@@ -1,0 +1,23 @@
+SELECT 
+  ao.id as ocorrencia_id,
+  a.id as aula_id,
+  a.titulo,
+  a.descricao,
+  a.horario_inicio,
+  a.horario_fim,
+  u.nome as professor_nome,
+  ao.status,
+  p.id as presenca_id,
+  p.status as checkin_status,
+  CASE 
+    WHEN p.id IS NOT NULL THEN true
+    ELSE false
+  END as ja_fez_checkin
+FROM academia.aulas_ocorrencias ao
+JOIN academia.aulas a ON ao.aula_id = a.id
+JOIN academia.usuarios u ON ao.professor_id = u.id
+LEFT JOIN academia.presencas p ON p.aula_ocorrencia_id = ao.id 
+  AND p.aluno_id = {{appsmith.store.usuarioLogado.id}}
+WHERE ao.data = CURRENT_DATE
+  AND ao.status IN ('agendada', 'em_andamento')
+ORDER BY a.horario_inicio;

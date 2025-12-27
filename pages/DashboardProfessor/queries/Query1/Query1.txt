@@ -1,0 +1,15 @@
+SELECT 
+  p.id as presenca_id,
+  u.id as aluno_id,
+  u.nome as aluno_nome,
+  p.checkin_at,
+  TO_CHAR(p.checkin_at, 'HH24:MI') as horario_checkin,
+  p.status,
+  a.titulo as aula_titulo,
+  ao.professor_id
+FROM academia.presencas p
+JOIN academia.usuarios u ON p.aluno_id = u.id
+JOIN academia.aulas_ocorrencias ao ON p.aula_ocorrencia_id = ao.id
+JOIN academia.aulas a ON ao.aula_id = a.id
+WHERE ao.data = CURRENT_DATE
+  AND p.status = 'pendente';

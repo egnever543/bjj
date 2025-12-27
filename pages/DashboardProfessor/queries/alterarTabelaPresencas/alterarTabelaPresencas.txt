@@ -1,0 +1,19 @@
+-- Adicionar coluna de status
+ALTER TABLE academia.presencas 
+ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'pendente' 
+CHECK (status IN ('pendente', 'aprovado', 'rejeitado'));
+
+-- Adicionar coluna de quem aprovou/rejeitou
+ALTER TABLE academia.presencas 
+ADD COLUMN IF NOT EXISTS aprovado_por INTEGER REFERENCES academia.usuarios(id);
+
+-- Adicionar coluna de quando foi aprovado/rejeitado
+ALTER TABLE academia.presencas 
+ADD COLUMN IF NOT EXISTS aprovado_em TIMESTAMP;
+
+-- Atualizar check-ins existentes para "pendente"
+UPDATE academia.presencas 
+SET status = 'pendente' 
+WHERE status IS NULL;
+
+SELECT 'Tabela atualizada com sucesso!' as mensagem;

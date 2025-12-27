@@ -1,0 +1,6 @@
+SELECT id, nome, email, role 
+FROM academia.usuarios 
+WHERE email = {{inp_email.text}} 
+  AND senha = {{inp_senha.text}} 
+  AND ativo = true
+LIMIT 1;

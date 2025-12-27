@@ -1,0 +1,15 @@
+SELECT 
+  ao.id as ocorrencia_id,
+  ao.status,
+  ao.data,
+  a.id as aula_id,
+  a.titulo,
+  a.descricao,
+  a.horario_inicio,
+  a.horario_fim
+FROM academia.aulas_ocorrencias ao
+JOIN academia.aulas a ON ao.aula_id = a.id
+WHERE ao.professor_id = {{appsmith.store.usuarioLogado.id}}
+  AND ao.data = CURRENT_DATE
+ORDER BY a.horario_inicio
+LIMIT 1;

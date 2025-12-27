@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "694ffca32f759c6ceec4b9aa_3ef8d94d-857e-4e15-af50-6a6197b0d7a8",
+  "id": "DashboardAluno_Sair",
+  "unpublishedCollection": {
+    "name": "Sair",
+    "pageId": "DashboardAluno",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

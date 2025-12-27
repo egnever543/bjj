@@ -1,0 +1,65 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 20,
+  "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+  "buttonColor": "{{\n  currentItem.checkin_status === 'aprovado' ? 'green' :\n  currentItem.checkin_status === 'pendente' ? 'orange' :\n  currentItem.checkin_status === 'rejeitado' ? 'red' :\n  'primary'\n}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "isDisabled"
+    },
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": "",
+  "isLoading": false,
+  "isVisible": "{{currentItem.ja_fez_checkin}}",
+  "key": "eylkepuh3n",
+  "leftColumn": 0,
+  "minWidth": 120,
+  "mobileBottomRow": 17,
+  "mobileLeftColumn": 23,
+  "mobileRightColumn": 39,
+  "mobileTopRow": 13,
+  "needsErrorInfo": false,
+  "onClick": "{{fazerCheckin.run().then(() => {\n  showAlert('Check-in realizado com sucesso! ✓', '');\n  buscarAulasHoje.run();\n});}}",
+  "parentColumnSpace": 6.40625,
+  "parentId": "kgan0hqlgu",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 64,
+  "text": "Check In",
+  "topRow": 16,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "yet6l18283",
+  "widgetName": "Button2"
+}

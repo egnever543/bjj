@@ -1,0 +1,9 @@
+INSERT INTO academia.presencas (aula_ocorrencia_id, aluno_id, checkin_at, status)
+VALUES (
+  {{List1.triggeredItem.ocorrencia_id}},
+  {{appsmith.store.usuarioLogado.id}},
+  NOW(),
+  'pendente'
+)
+ON CONFLICT (aula_ocorrencia_id, aluno_id) DO NOTHING
+RETURNING *;
